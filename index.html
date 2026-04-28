@@ -3,203 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>اكواد خصم</title>
+<title>Coupons Pro</title>
 
 <style>
-body {
-  font-family: Arial;
-  background: #f3f4f6;
-  margin: 0;
-  padding: 20px;
-  direction: rtl;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui;
+  background:linear-gradient(135deg,#f5e9f2,#e6e7fb);
 }
 
-.title {
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 25px;
+.header{
+  padding:20px;
+  background:linear-gradient(135deg,#e89abf,#9f8cff);
+  color:#fff;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 12px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+.header h3{
+  margin:0;
+  font-size:20px;
 }
 
-.left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.search input{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border:none;
+  border-radius:12px;
+  outline:none;
+  background:#ffffffdd;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #fff;
+.container{
+  padding:15px;
 }
 
-.code {
-  background: linear-gradient(45deg,#ffb6c1,#d8b6ff);
-  padding: 6px 14px;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 14px;
+.item{
+  background:#faf7fb;
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.07);
+  cursor:pointer;
 }
 
-.brand {
-  font-size: 13px;
-  color: #444;
+.left{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-button {
-  background: #111;
-  color: white;
-  border: none;
-  padding: 7px 14px;
-  border-radius: 10px;
-  cursor: pointer;
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  object-fit:contain;
+  background:#fff;
+  padding:4px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
-button.copied {
-  background: green;
+.brand{
+  font-size:15px;
+  font-weight:600;
+  color:#444;
 }
 
-.toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: black;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  display: none;
+.code{
+  background:linear-gradient(135deg,#d16ba5,#8e7cff);
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:13px;
 }
+
+.actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+button{
+  border:none;
+  border-radius:10px;
+  padding:6px 9px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.copy{background:#f3d4e5}
+.save{background:#ececf3}
+.save.active{background:#ffd6ec}
+
+.toast{
+  position:fixed;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#d16ba5;
+  color:#fff;
+  padding:10px 20px;
+  border-radius:20px;
+  opacity:0;
+  transition:.3s;
+}
+.toast.show{opacity:1}
+
 </style>
-
 </head>
 
 <body>
 
-<div class="title">🔥 اكواد خصم قوية 🔥</div>
-
-<div class="card">
-  <div class="left">
-    <img src="vogacloset.png" class="logo">
-    <div>
-      <div class="code">9VTQ</div>
-      <div class="brand">Vogacloset</div>
-    </div>
+<div class="header">
+  <h3>💖 أكواد الخصم</h3>
+  <div class="search">
+    <input id="search" placeholder="ابحث عن متجر أو كود">
   </div>
-  <button onclick="copyCode(this,'9VTQ','https://vogacloset.com')">نسخ</button>
 </div>
 
-<div class="card">
-  <div class="left">
-    <img src="mamas.png" class="logo">
-    <div>
-      <div class="code">ADL82</div>
-      <div class="brand">Mamas & Papas</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'ADL82','https://www.mamasandpapas.com')">نسخ</button>
-</div>
+<div class="container" id="list"></div>
 
-<div class="card">
-  <div class="left">
-    <img src="styli.png" class="logo">
-    <div>
-      <div class="code">ADL89</div>
-      <div class="brand">Styli</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'ADL89','https://www.styli.com')">نسخ</button>
-</div>
-
-<div class="card">
-  <div class="left">
-    <img src="noon.png" class="logo">
-    <div>
-      <div class="code">ADX257</div>
-      <div class="brand">Noon</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'ADX257','https://www.noon.com')">نسخ</button>
-</div>
-
-<div class="card">
-  <div class="left">
-    <img src="bath.png" class="logo">
-    <div>
-      <div class="code">D9XM</div>
-      <div class="brand">Bath & Body Works</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'D9XM','https://www.bathandbodyworks.com')">نسخ</button>
-</div>
-
-<div class="card">
-  <div class="left">
-    <img src="hm.png" class="logo">
-    <div>
-      <div class="code">DF4F</div>
-      <div class="brand">H&M</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'DF4F','https://www.hm.com')">نسخ</button>
-</div>
-
-<div class="card">
-  <div class="left">
-    <img src="metro.png" class="logo">
-    <div>
-      <div class="code">DN50</div>
-      <div class="brand">Metro Brazil</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'DN50','https://www.metrobrazil.com')">نسخ</button>
-</div>
-
-<div class="card">
-  <div class="left">
-    <img src="izil.png" class="logo">
-    <div>
-      <div class="code">MM91</div>
-      <div class="brand">Izil Beauty</div>
-    </div>
-  </div>
-  <button onclick="copyCode(this,'MM91','https://www.izilbeauty.com')">نسخ</button>
-</div>
-
-<div class="toast" id="toast">تم نسخ الكود 🎉</div>
+<div class="toast" id="toast"></div>
 
 <script>
-function copyCode(btn, code, link) {
-  navigator.clipboard.writeText(code);
 
-  btn.classList.add("copied");
-  btn.innerText = "تم النسخ";
+const storeData = {
+  "Namshi": {site:"https://en-ae.namshi.com", logo:"https://upload.wikimedia.org/wikipedia/commons/3/3e/Namshi_logo.svg"},
+  "NOON": {site:"https://www.noon.com", logo:"https://upload.wikimedia.org/wikipedia/commons/2/2f/Noon_logo.svg"},
+  "Styli": {site:"https://www.styli.com", logo:"https://seeklogo.com/images/S/styli-logo.png"},
+  "Max Fashion": {site:"https://www.maxfashion.com", logo:"https://seeklogo.com/images/M/max-fashion-logo.png"},
+  "Mumzworld": {site:"https://www.mumzworld.com", logo:"https://seeklogo.com/images/M/mumzworld-logo.png"},
+  "Bloomingdale's": {site:"https://www.bloomingdales.ae", logo:"https://seeklogo.com/images/B/bloomingdales-logo.png"},
+  "Eyewa": {site:"https://www.eyewa.com", logo:"https://seeklogo.com/images/E/eyewa-logo.png"},
+  "Golden Scent": {site:"https://www.goldenscent.com", logo:"https://seeklogo.com/images/G/golden-scent-logo.png"}
+};
 
-  let toast = document.getElementById("toast");
-  toast.style.display = "block";
+const coupons = [
+{brand:"Vogacloset",code:"GGG"},
+{brand:"Vogacloset",code:"GM"},
+{brand:"Mamas & Papas",code:"ADL12"},
+{brand:"Styli",code:"TSSS"},
+{brand:"Mumzworld",code:"ADL33"},
+{brand:"NOON",code:"ZZZ10"},
+{brand:"Namshi",code:"SW7"},
+{brand:"Max Fashion",code:"ATRD"},
+{brand:"Bloomingdale's",code:"ADL3"},
+{brand:"Golden Scent",code:"G4WQ"}
+];
 
-  setTimeout(() => {
-    toast.style.display = "none";
-    btn.classList.remove("copied");
-    btn.innerText = "نسخ";
-  }, 1500);
+let saved = JSON.parse(localStorage.getItem("savedCoupons")) || [];
 
-  window.open(link, "_blank");
+function render(data){
+  const list=document.getElementById("list");
+  list.innerHTML="";
+
+  data.forEach(c=>{
+    const info = storeData[c.brand] || {site:"#", logo:"https://via.placeholder.com/40"};
+
+    const div=document.createElement("div");
+    div.className="item";
+
+    div.innerHTML=`
+      <div class="left">
+        <img class="logo" src="${info.logo}">
+        <div class="brand">${c.brand}</div>
+      </div>
+
+      <div class="actions">
+        <div class="code">${c.code}</div>
+        <button class="save">⭐</button>
+        <button class="copy">📋</button>
+      </div>
+    `;
+
+    // فتح المتجر عند الضغط على الكارت (نفس التبويب)
+    div.addEventListener("click", (e)=>{
+      if(e.target.closest('button')) return;
+      window.location.href = info.site;
+    });
+
+    // النسخ + توجيه مباشر للموقع (نفس التبويب)
+    div.querySelector(".copy").addEventListener("click", (e)=>{
+      e.stopPropagation();
+      navigator.clipboard.writeText(c.code);
+      toast("تم النسخ 💖");
+      window.location.href = info.site;
+    });
+
+    // حفظ
+    div.querySelector(".save").addEventListener("click", (e)=>{
+      e.stopPropagation();
+      if(!saved.find(s=>s.code===c.code)){
+        saved.push(c);
+        localStorage.setItem("savedCoupons",JSON.stringify(saved));
+        toast("تم الحفظ ⭐");
+      }
+    });
+
+    list.appendChild(div);
+  });
 }
+
+function showAll(){render(coupons)}
+function showSaved(){render(saved)}
+
+// search
+
+document.getElementById("search").oninput=(e)=>{
+  const v=e.target.value.toLowerCase();
+  render(coupons.filter(c=>
+    c.brand.toLowerCase().includes(v)||c.code.toLowerCase().includes(v)
+  ));
+};
+
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.innerText=msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2000);
+}
+
+render(coupons);
+
 </script>
 
 </body>
 </html>
+
